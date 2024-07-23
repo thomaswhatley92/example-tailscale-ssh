@@ -2,9 +2,9 @@
 
 _term() {
     echo "Caught SIGTERM signal. Logging out and cleaning up."
+    trap - TERM
     kill -TERM $TAILSCALE_DAEMON_PID
     wait $TAILSCALE_DAEMON_PID
-    trap - TERM
 }
 
 trap _term TERM
