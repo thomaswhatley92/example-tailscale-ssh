@@ -9,7 +9,7 @@ _term() {
 
 trap _term TERM
 
-/app/tailscaled -state=mem: -statedir=/var/lib/tailscale -socket=/var/run/tailscale/tailscaled.sock -tun userspace-networking -socks5-server localhost:1055 &
+/app/tailscaled --state=/var/lib/tailscale/tailscaled.state --socket=/var/run/tailscale/tailscaled.sock &
 TAILSCALE_DAEMON_PID=$!
 /app/tailscale up --ssh --authkey=${TAILSCALE_AUTHKEY} --hostname=${KOYEB_APP_NAME}-${KOYEB_SERVICE_NAME}
 
